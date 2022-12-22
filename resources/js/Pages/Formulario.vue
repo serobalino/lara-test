@@ -141,7 +141,6 @@
         }),
         watch:{
             empresa:function(){
-                this.departamento = null
                 this.cargarDepartamentos();
             },
             departamento:function(val){
@@ -155,6 +154,9 @@
                 this.empresa = null
                 this.departamento = null
                 this.cargo = null
+                this.empresas = []
+                this.departamentos=[]
+                this.cargos=[]
                 servicios.empresas().then(response=>{
                     this.empresas=response.data;
                 });
@@ -162,12 +164,15 @@
             cargarDepartamentos:function(){
                 this.departamento = null
                 this.cargo = null
+                this.departamentos=[]
+                this.cargos=[]
                 servicios.departamentos(this.empresa).then(response=>{
                     this.departamentos=response.data;
                 });
             },
             cargarCargos:function(){
                 this.cargo = null
+                this.cargos = []
                 servicios.cargos(this.departamento).then(response=>{
                     this.cargos=response.data;
                 });

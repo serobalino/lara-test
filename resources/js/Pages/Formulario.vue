@@ -10,71 +10,71 @@
             <div class="flex justify-center">
                 <div class="shadow-lg m-5 p-5 rounded-lg sm:w-full w-20">
                     <div class="">
-                        <form @submit.prevent="validar" class="">
+                        <Form @submit="validar" :validation-schema="schema" v-slot="{ errors }">
                             <fieldset :disabled="cargando">
                                 <label class="block">
                                     <span>*</span>Nombre
-                                    <input type="text" v-model="formulario.nombre" name="nombre" class="form-input mt-1 block w-full" placeholder="Carlos"/>
-                                    <small class="text-red-600"></small>
+                                    <Field type="text" v-model="formulario.nombre" name="nombre" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="Carlos"/>
+                                    <small class="text-red-600">{{errors.nombre}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Apellido
-                                    <input type="text" v-model="formulario.apellido" name="apellido" class="form-input mt-1 block w-full" placeholder="Rosales"/>
-                                    <small class="text-red-600"></small>
+                                    <Field type="text" v-model="formulario.apellido" name="apellido" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="Rosales"/>
+                                    <small class="text-red-600">{{errors.apellido}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Celular
-                                    <input type="tel" v-model="formulario.celular" name="celular" class="form-input mt-1 block w-full" placeholder="0998978458" />
-                                    <small class="text-red-600"></small>
+                                    <Field type="tel" v-model="formulario.celular" name="celular" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="0998978458" />
+                                    <small class="text-red-600">{{errors.celular}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Correo Electónico
-                                    <input type="email" v-model="formulario.email" name="email" class="form-input mt-1 block w-full" placeholder="crosales@google.com"/>
-                                    <small class="text-red-600"></small>
+                                    <Field type="email" v-model="formulario.email" name="email" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="crosales@google.com"/>
+                                    <small class="text-red-600">{{errors.email}}</small>
                                 </label>
                                 <label class="block">
                                     Extensión telefónica
-                                    <input type="tel" v-model="formulario['extención']" name="extensión" class="form-input mt-1 block w-full" placeholder="1020" />
-                                    <small class="text-red-600"></small>
+                                    <Field type="tel" v-model="formulario['extención']" name="extensión" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="1020" />
+                                    <small class="text-red-600">{{errors['extención']}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Empresa
-                                    <select class="form-select mt-1 block w-full" v-model="empresa" name="empresa">
+                                    <Field class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" as="select" v-model="empresa" name="empresa">
                                         <option :value="null" disabled>Selecciona</option>
                                         <option :value="item" v-for="item in empresas" :key="item.id_em">{{item.nombre_em}}</option>
-                                    </select>
-                                    <small class="text-red-600"></small>
+                                    </Field>
+                                    <small class="text-red-600">{{errors.empresa}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Área
-                                    <select class="form-select mt-1 block w-full" v-model="departamento" name="área">
+                                    <Field class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" as="select" v-model="departamento" name="área">
                                         <option :value="null" disabled>Selecciona</option>
                                         <option :value="item" v-for="item in departamentos" :key="item.id_de">{{item.titulo_de}}</option>
-                                    </select>
-                                    <small class="text-red-600"></small>
+                                    </Field>
+                                    <small class="text-red-600">{{errors['área']}}</small>
                                 </label>
                                 <label class="block">
                                     <span>*</span>Cargo
-                                    <select class="form-select mt-1 block w-full" v-model="formulario.cargo" name="cargo">
+                                    <Field class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" as="select" v-model="formulario.cargo" name="cargo">
                                         <option :value="null" disabled>Selecciona</option>
                                         <option :value="item.id_ca" v-for="item in cargos" :key="item.id_ca">{{item.nombre_ca}}</option>
-                                    </select>
-                                    <small class="text-red-600"></small>
+                                    </Field>
+                                    <small class="text-red-600">{{errors.cargo}}</small>
                                 </label>
                                 <label class="block">
                                     Skype(usuario)
-                                    <input type="text" v-model="formulario.skype" name="skype" class="form-input mt-1 block w-full" placeholder="carlos.rosales"  />
-                                    <small class="text-red-600"></small>
+                                    <Field type="text" v-model="formulario.skype" name="skype" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="carlos.rosales"  />
+                                    <small class="text-red-600">{{errors.skype}}</small>
                                 </label>
                                 <label class="block">
                                     Github (link)
-                                    <input type="url" v-model="formulario.github" name="github" class="form-input mt-1 block w-full" placeholder="https://github.com/crosales"  />
-                                    <small class="text-red-600"></small>
+                                    <Field type="url" v-model="formulario.github" name="github" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="https://github.com/crosales"  />
+                                    <small class="text-red-600">{{errors.github}}</small>
                                 </label>
                                 <label class="block">
                                     LinkedIn (link)
-                                    <input type="url" v-model="formulario.linkedin" name="linkedin" class="form-input mt-1 block w-full" placeholder="https://ec.linkedin.com/in/ricardo-rosales-18317123" />
-                                    <small class="text-red-600"></small>
+                                    <Field type="url" v-model="formulario.linkedin" name="linkedin" class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" placeholder="https://ec.linkedin.com/in/ricardo-rosales-18317123" />
+                                    <small class="text-red-600">{{errors.linkedin}}</small>
                                 </label>
                                 <div class="mt-6">
                                     <button :disabled="cargando" type="submit" class="px-4 py-2 font-semibold text-sm bg-blue-500 text-white rounded-md shadow-sm hover:scale-125 ease-in-out duration-300 delay-150">Generar</button>
@@ -101,8 +101,17 @@
         },
         setup() {
             const schema = yup.object().shape({
+                nombre: yup.string().required(),
+                apellido: yup.string().required(),
+                celular: yup.string().trim().matches(/^[0][8-9][0-9]{7}[0-9]/,'Ingresa un número de celular válido').max(10).required(),
+                'extención': yup.string().max(5),
                 email: yup.string().required().email(),
-                password: yup.string().required().min(8),
+                empresa: yup.string().required(),
+                'área': yup.string().required(),
+                cargo: yup.string().required(),
+                skype: yup.string().matches(/^[a-z][a-z0-9\.,\-_]{5,31}$/,'Ingresa un usuario de Skype válido'),
+                github: yup.string().matches(/^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i,'Ingresa el link de tu cuenta de github válida'),
+                linkedin: yup.string().matches(/^(http(s?):\/\/)?(www\.)?linkedin\.com(?:\/[^\/]+)/,'Ingresa el link de tu cuenta de LinkedIn'),
             });
             return {
                 schema,

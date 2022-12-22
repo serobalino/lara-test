@@ -41,7 +41,7 @@
                                     <span>*</span>Empresa
                                     <Field class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" as="select" v-model="empresa" name="empresa">
                                         <option :value="null" disabled>Selecciona</option>
-                                        <option :value="item" v-for="item in empresas" :key="item.id_em">{{item.nombre_em}}</option>
+                                        <option :value="item.id_em" v-for="item in empresas" :key="item.id_em">{{item.nombre_em}}</option>
                                     </Field>
                                     <small class="text-red-600">{{errors.empresa}}</small>
                                 </label>
@@ -49,7 +49,7 @@
                                     <span>*</span>Área
                                     <Field class="mt-1 block w-full rounded-md bg-gray-100 border-transparent focus:border-gray-500 focus:bg-white focus:ring-0" as="select" v-model="departamento" name="área">
                                         <option :value="null" disabled>Selecciona</option>
-                                        <option :value="item" v-for="item in departamentos" :key="item.id_de">{{item.titulo_de}}</option>
+                                        <option :value="item.id_de" v-for="item in departamentos" :key="item.id_de">{{item.titulo_de}}</option>
                                     </Field>
                                     <small class="text-red-600">{{errors['área']}}</small>
                                 </label>
@@ -106,9 +106,9 @@
                 celular: yup.string().trim().matches(/^[0][8-9][0-9]{7}[0-9]/,'Ingresa un número de celular válido').max(10).required(),
                 'extención': yup.string().max(5),
                 email: yup.string().required().email(),
-                empresa: yup.string().required(),
-                'área': yup.string().required(),
-                cargo: yup.string().required(),
+                empresa: yup.number().required(),
+                'área': yup.number().required(),
+                cargo: yup.number().required(),
                 skype: yup.string().matches(/^[a-z][a-z0-9\.,\-_]{5,31}$/,'Ingresa un usuario de Skype válido'),
                 github: yup.string().matches(/^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i,'Ingresa el link de tu cuenta de github válida'),
                 linkedin: yup.string().matches(/^(http(s?):\/\/)?(www\.)?linkedin\.com(?:\/[^\/]+)/,'Ingresa el link de tu cuenta de LinkedIn'),
@@ -141,24 +141,33 @@
         }),
         watch:{
             empresa:function(){
+                this.departamento = null
                 this.cargarDepartamentos();
             },
-            departamento:function(){
-                this.cargarCargos()
+            departamento:function(val){
+                if(val){
+                    this.cargarCargos()
+                }
             }
         },
         methods:{
             cargarEmpresas:function(){
+                this.empresa = null
+                this.departamento = null
+                this.cargo = null
                 servicios.empresas().then(response=>{
                     this.empresas=response.data;
                 });
             },
             cargarDepartamentos:function(){
+                this.departamento = null
+                this.cargo = null
                 servicios.departamentos(this.empresa).then(response=>{
                     this.departamentos=response.data;
                 });
             },
             cargarCargos:function(){
+                this.cargo = null
                 servicios.cargos(this.departamento).then(response=>{
                     this.cargos=response.data;
                 });

@@ -19,6 +19,6 @@ export default {
         return axios.get(`/api/cargos/${departamento}`);
     },
     guardarRegistro(formulario){
-        return axios.post('/firma',formulario);
+        return axios.post('/generar',formulario);
     }
 };

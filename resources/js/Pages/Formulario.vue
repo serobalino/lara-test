@@ -130,9 +130,9 @@ import { Head } from '@inertiajs/inertia-vue3';
                 empresa: yup.number().required(),
                 'área': yup.number().required(),
                 cargo: yup.number().required(),
-                skype: yup.string().matches(/^[a-z][a-z0-9\.,\-_]{5,31}$/,'Ingresa un usuario de Skype válido'),
-                github: yup.string().matches(/^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i,'Ingresa el link de tu cuenta de github válida'),
-                linkedin: yup.string().matches(/^(http(s?):\/\/)?(www\.)?linkedin\.com(?:\/[^\/]+)/,'Ingresa el link de tu cuenta de LinkedIn'),
+                skype: yup.string().nullable().matches(/^[a-z][a-z0-9\.,\-_]{5,31}$/,'Ingresa un usuario de Skype válido'),
+                github: yup.string().nullable().matches(/^(http(s?):\/\/)?(www\.)?github\.([a-z])+\/([A-Za-z0-9]{1,})+\/?$/i,'Ingresa el link de tu cuenta de github válida'),
+                linkedin: yup.string().nullable().matches(/^(http(s?):\/\/)?(www\.)?linkedin\.com(?:\/[^\/]+)/,'Ingresa el link de tu cuenta de LinkedIn'),
             });
             return {
                 schema,

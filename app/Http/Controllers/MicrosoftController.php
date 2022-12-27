@@ -25,6 +25,6 @@ class MicrosoftController extends Controller
             $user->save();
         }
         Auth::login($user);
-        return redirect('dashboard');
+        return redirect('generar.index');
     }
 }

@@ -11,6 +11,9 @@ module.exports = {
 
     theme: {
         extend: {
+            colors: {
+                indigo: '#e54231'
+            },
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },

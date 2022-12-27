@@ -19,26 +19,18 @@ use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('microsoft')->redirect();
-});
-Route::get('success', function () {
-    $user = Socialite::driver('microsoft')->user();
-    return $user;
-    // $user->token
-});
-Route::resource('generar',\App\Http\Controllers\RegistrosController::class);
+Route::get('auth', [\App\Http\Controllers\MicrosoftController::class,'redirect'])->name('auth-ms');
+Route::get('success', [\App\Http\Controllers\MicrosoftController::class,'login']);
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::resource('generar',\App\Http\Controllers\RegistrosController::class);
+    Route::resource('chat',\App\Http\Controllers\ChatController::class);
 });
 
 require __DIR__.'/auth.php';

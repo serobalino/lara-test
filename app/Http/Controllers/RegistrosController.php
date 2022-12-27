@@ -13,9 +13,9 @@ use Inertia\Inertia;
 
 class RegistrosController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return Inertia::render('Formulario');
+        return Inertia::render('Formulario',$request->user());
     }
 
     /**

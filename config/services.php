@@ -27,6 +27,13 @@ return [
         'redirect' => env('MICROSOFT_REDIRECT_URI')
     ],
 
+    'microsoft-graph' => [
+        'client_id' => env('MS_GRAPH_KEY'),
+        'client_secret' => env('MS_GRAPH_SECRET'),
+        'tenant_id' => env('MS_GRAPH_TENANT_ID', 'common'),
+        'redirect' => env('MS_GRAPH_REDIRECT_URL'),
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

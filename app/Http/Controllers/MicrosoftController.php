@@ -24,7 +24,7 @@ class MicrosoftController extends Controller
             $user->password = $login->getId();
             $user->save();
         }
-        Auth::login($user);
+        Auth::login($user,true);
         return redirect(route('generar.index'));
     }
 }

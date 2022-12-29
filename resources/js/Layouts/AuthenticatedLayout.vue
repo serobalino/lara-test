@@ -6,8 +6,11 @@ import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
 import { Link } from '@inertiajs/inertia-vue3';
+import lista from "../menu.json";
+
 
 const showingNavigationDropdown = ref(false);
+const menu = lista;
 </script>
 
 <template>
@@ -29,11 +32,8 @@ const showingNavigationDropdown = ref(false);
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <NavLink :href="route('generar.index')" :active="route().current('generar.index')">
-                                    Firma
-                                </NavLink>
-                                <NavLink :href="route('chat.index')" :active="route().current('chat.index')">
-                                    IA
+                                <NavLink :href="route(item.route)" :active="route().current(item.route)" v-for="item in menu" :key="item.label">
+                                    {{ item.label }}
                                 </NavLink>
                             </div>
                         </div>
@@ -114,11 +114,8 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('generar.index')" :active="route().current('generar.index')">
-                            Firma
-                        </ResponsiveNavLink>
-                        <ResponsiveNavLink :href="route('chat.index')" :active="route().current('chat.index')">
-                            IA
+                        <ResponsiveNavLink :href="route(item.route)" :active="route().current(item.route)" v-for="item in menu" :key="item.label">
+                            {{ item.label }}
                         </ResponsiveNavLink>
                     </div>
 

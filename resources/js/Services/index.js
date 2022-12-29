@@ -20,5 +20,13 @@ export default {
     },
     guardarRegistro(formulario){
         return axios.post('/generar',formulario);
+    },
+    descargar(item){
+        return axios({
+            url: item.archive_download_url,
+            method: 'GET',
+            responseType: 'blob',
+            headers: {'Authorization': `token ${item.sha4}`},
+        })
     }
 };

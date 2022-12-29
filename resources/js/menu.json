@@ -1,0 +1,10 @@
+[
+    {
+        "route": "generar.index",
+        "label": "Firma"
+    },
+    {
+        "route": "chat.index",
+        "label": "IA"
+    }
+]

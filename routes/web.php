@@ -31,6 +31,7 @@ Route::get('/dashboard', function () {
 Route::middleware('auth')->group(function () {
     Route::resource('generar',\App\Http\Controllers\RegistrosController::class);
     Route::resource('chat',\App\Http\Controllers\ChatController::class);
+    Route::get('/{app}/{commit?}',[\App\Http\Controllers\ConsultaCommit::class,'vista'])->name("generar");
 });
 
 require __DIR__.'/auth.php';

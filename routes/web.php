@@ -16,7 +16,7 @@ use Laravel\Socialite\Facades\Socialite;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
@@ -33,5 +33,3 @@ Route::middleware('auth')->group(function () {
     Route::resource('chat',\App\Http\Controllers\ChatController::class);
     Route::get('/{app}/{commit?}',[\App\Http\Controllers\ConsultaCommit::class,'vista'])->name("generar");
 });
-
-require __DIR__.'/auth.php';

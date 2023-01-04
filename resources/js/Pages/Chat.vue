@@ -26,7 +26,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="chat-message">
+                            <div class="chat-message" v-if="item.pregunta">
                                 <div class="flex items-end justify-end">
                                     <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
                                         <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{{ item.pregunta }}</span></div>
@@ -76,6 +76,7 @@ export default {
         preguntas: [],
         error: null
     }),
+    props: ['auth'],
     components: {
         Head,
         AuthenticatedLayout
@@ -96,9 +97,21 @@ export default {
         scroll() {
             const el = document.getElementById('messages')
             el.scrollTop = el.scrollHeight
+        },
+        saludo() {
+            const name = this.auth.user.name
+            this.preguntas.push({
+                tipo: false,
+                choices: [
+                    {
+                        text: `Hola ${name}, en que te puedo ayudar?`
+                    }
+                ]
+            })
         }
     },
     mounted() {
+        this.saludo()
         this.scroll()
     }
 }

@@ -46,6 +46,10 @@ class ChatController extends Controller
                         'presence_penalty' => 0,
                     ]);
                 }
+                $user = auth()->user();
+                $user->ia_counter++;
+                $user->timestamps = false;
+                $user->save();
                 return response()->json([
                     'status' => true,
                     'data' => $result

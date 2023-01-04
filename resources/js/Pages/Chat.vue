@@ -9,6 +9,13 @@
                 <div class="flex-1 p:2 sm:p-6 justify-between flex flex-col h-screen bg-white shadow-lg rounded-lg">
                     <div id="messages" class="flex flex-col space-y-4 p-3 overflow-y-auto scrollbar-thumb-blue scrollbar-thumb-rounded scrollbar-track-blue-lighter scrollbar-w-2 scrolling-touch">
                         <template  v-for="(item,index) in preguntas" :key="index">
+                            <div class="chat-message" v-if="item.pregunta">
+                                <div class="flex items-end justify-end">
+                                    <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
+                                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{{ item.pregunta }}</span></div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="chat-message" >
                                 <div class="flex items-end">
                                     <template v-if="item.tipo">
@@ -23,13 +30,6 @@
                                     </template>
                                     <div class="w-6 h-6 rounded-full order-1 bg-red-600 text-center">
                                         <small class="text-white">IA</small>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="chat-message" v-if="item.pregunta">
-                                <div class="flex items-end justify-end">
-                                    <div class="flex flex-col space-y-2 text-xs max-w-xs mx-2 order-1 items-end">
-                                        <div><span class="px-4 py-2 rounded-lg inline-block rounded-br-none bg-blue-600 text-white ">{{ item.pregunta }}</span></div>
                                     </div>
                                 </div>
                             </div>

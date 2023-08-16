@@ -43,6 +43,12 @@ a {
                                          role="presentation" width="86"
                                          alt="logo-certificado">
                                 </td>
+                                <td style="text-align: center;">
+                                    <img style="max-width: 52px;"
+                                         src="https://raw.githubusercontent.com/Inpsercom-IT/app-image/54403b368c1487aa90a7f9407d16cf223ee06b17/inpsercom/Inpsercom.svg"
+                                         role="presentation" width="86"
+                                         alt="logo-certificado">
+                                </td>
                             </tr>
                             <tr>
                                 <td style="text-align: center;">
